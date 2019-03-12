@@ -24,18 +24,18 @@ public class MovieController {
 
     @PostMapping("/movie")
     public ResponseEntity<Movie> saveMovie(@RequestBody Movie movie){
-        ResponseEntity responseEntity;
-        try{
-            movieService.saveMovie(movie);
-            responseEntity = new ResponseEntity<String>("Successfully Created",HttpStatus.CREATED);
-
-        }catch (MovieAlreadyExistsException mx){
-            responseEntity = new ResponseEntity<String>(mx.getMessage(),HttpStatus.CONFLICT);
-            mx.printStackTrace();
-        }
-        return responseEntity;
-//        Movie savedMovie = movieService.saveMovie(movie);
-//      return new ResponseEntity<Movie>(savedMovie, HttpStatus.OK);
+//        ResponseEntity responseEntity;
+//        try{
+//            movieService.saveMovie(movie);
+//            responseEntity = new ResponseEntity<String>("Successfully Created",HttpStatus.CREATED);
+//
+//        }catch (MovieAlreadyExistsException mx){
+//            responseEntity = new ResponseEntity<String>(mx.getMessage(),HttpStatus.CONFLICT);
+//            mx.printStackTrace();
+//        }
+//        return responseEntity;
+        Movie savedMovie = movieService.saveMovie(movie);
+      return new ResponseEntity<Movie>(savedMovie, HttpStatus.OK);
     }
 
     @GetMapping("/movies")
@@ -44,20 +44,10 @@ public class MovieController {
         return new ResponseEntity<List>(allUsers,HttpStatus.OK);
     }
 
-    @GetMapping("/movies/{movieid}")
-    public ResponseEntity<?> getMovieById(@PathVariable int movieid){
-        ResponseEntity responseEntity1;
-        try{
-            movieService.getMovieById(movieid);
-          return new ResponseEntity<String>("Found",HttpStatus.FOUND);
-
-        }catch (MovieNotFoundException mx){
-            return new ResponseEntity<String>("not found",HttpStatus.OK);
-//            mx.printStackTrace();
-        }
-//        return responseEntity1;
-//        Movie getMovieById = movieService.getMovieById(movieid);
-//        return new ResponseEntity<Movie>(getMovieById,HttpStatus.OK);
+    @GetMapping("/movies/{moviename}")
+    public ResponseEntity<?> getMovieById(@PathVariable String moviename){
+        List<Movie> getMovieByName= movieService.getMovieByName(moviename);
+        return new ResponseEntity<List>(getMovieByName,HttpStatus.OK);
     }
     @DeleteMapping("/movies/{movieid}")
     public ResponseEntity<List> deleteMovie(@PathVariable int movieid){

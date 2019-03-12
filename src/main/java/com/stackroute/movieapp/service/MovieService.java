@@ -9,6 +9,7 @@ import java.util.List;
 public interface MovieService {
     public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException;
     public List getAllMovies();
-    public Movie getMovieById(int id)throws MovieNotFoundException;
+    public List<Movie> getMovieByName(String name)throws MovieNotFoundException;
+
 
 }

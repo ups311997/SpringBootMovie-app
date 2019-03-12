@@ -20,31 +20,31 @@ public class MovieServiceImpl implements MovieService {
 
 
 
-    public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException {
+    public Movie saveMovie(Movie movie) {
 
-        if(movieRepository.existsById(movie.getMovieid()))
-        {
-            throw new MovieAlreadyExistsException("Movie Already Exists");
-        }
+//        if(movieRepository.existsById(movie.getMovieid()))
+//        {
+//            throw new MovieAlreadyExistsException("Movie Already Exists");
+//        }
         Movie savedMovie=movieRepository.save(movie);
-        if (savedMovie == null)
-        {
-            throw new MovieAlreadyExistsException("Movie Already Exists");
-        }
+//        if (savedMovie == null)
+//        {
+//            throw new MovieAlreadyExistsException("Movie Already Exists");
+//        }
         return savedMovie;
     }
 
     public List<Movie> getAllMovies(){
-        List<Movie> allMovies = (List)movieRepository.findAll();
+        List<Movie> allMovies = movieRepository.getMovies();
         return allMovies;
     }
 
-    public Movie getMovieById(int id) throws MovieNotFoundException{
-        Optional<Movie> movie=  movieRepository.findById(id);
-        if (!movie.isPresent())
-            throw new MovieNotFoundException("Movie Not Found");
+    public List<Movie> getMovieByName(String name) {
+        List<Movie> movie=  movieRepository.findByName(name);
+//        if (!movie.isPresent())
+//            throw new MovieNotFoundException("Movie Not Found");
 
-        return movie.get();
+        return movie;
     }
 
     public void deleteMovie(int movieid){
