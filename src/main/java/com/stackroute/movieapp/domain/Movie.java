@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Movie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+  //  @GeneratedValue(strategy = GenerationType.AUTO)
     private int movieid;
     private String moviename;
     private String moviedetails;
