@@ -18,8 +18,6 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-
-
     @PostMapping("/movie")
     public ResponseEntity<Movie> saveMovie(@RequestBody Movie movie){
         Movie savedMovie = movieService.saveMovie(movie);
