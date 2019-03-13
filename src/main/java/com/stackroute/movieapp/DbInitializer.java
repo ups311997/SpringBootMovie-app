@@ -18,8 +18,8 @@ public class DbInitializer implements CommandLineRunner, ApplicationListener<Con
     @Override
     public void run(String... args) throws Exception {
 
-        Movie movie1=new Movie("Stree","Horror-Comedy");
-        Movie movie2=new Movie("Conjuring","Horror");
+        Movie movie1=new Movie(3,"Stree","Horror-Comedy");
+        Movie movie2=new Movie(4,"Conjuring","Horror");
 
         this.movieRepository.save(movie1);
         this.movieRepository.save(movie2);
@@ -28,8 +28,8 @@ public class DbInitializer implements CommandLineRunner, ApplicationListener<Con
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
-        Movie movie1=new Movie("Annabelle","Horror");
-        Movie movie2=new Movie("Conjuring2","Super-Horror");
+        Movie movie1=new Movie(1,"Annabelle","Horror");
+        Movie movie2=new Movie(2,"Conjuring2","Super-Horror");
 
         this.movieRepository.save(movie1);
         this.movieRepository.save(movie2);
