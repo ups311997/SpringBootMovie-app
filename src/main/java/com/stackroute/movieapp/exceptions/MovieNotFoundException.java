@@ -11,9 +11,4 @@ public class MovieNotFoundException extends Exception{
         super(message);
         this.message = message;
     }
-
-
-
-
-
 }
